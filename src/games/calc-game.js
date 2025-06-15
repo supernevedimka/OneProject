@@ -23,8 +23,7 @@ export const runBrainCalc = () => {
       case "*":
         result = randomNumber1 * randomNumber2;
         break;
-    }
-    console.log(result);
+    };
     const answerUser = readlineSync.question("Your answer: ");
     if (Number(answerUser) === result) {
       console.log("Correct!");
