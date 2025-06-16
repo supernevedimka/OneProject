@@ -1,5 +1,5 @@
-import readlineSync from 'readline-sync';
-import { greetUser } from '../cli.js';
+import readlineSync from "readline-sync";
+import { greetUser } from "../cli.js";
 
 export const runBrainCalc = () => {
   const name = greetUser();
@@ -23,7 +23,7 @@ export const runBrainCalc = () => {
       case "*":
         result = randomNumber1 * randomNumber2;
         break;
-    };
+    }
     const answerUser = readlineSync.question("Your answer: ");
     if (Number(answerUser) === result) {
       console.log("Correct!");

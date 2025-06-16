@@ -8,7 +8,7 @@ export const runBrainProgreesion = () => {
     const progres10 = [];
     const randomNumber = Math.floor(Math.random() * 101) + 1;
     const step = Math.floor(Math.random() * 11) + 1;
-    console.log(step)
+    console.log(step);
     for (let j = 0; j < 10; j++) {
       progres10.push(randomNumber + j * step);
     }
@@ -19,7 +19,7 @@ export const runBrainProgreesion = () => {
     const answerUser = readlineSync.question("Your answer: ");
     if (Number(answerUser) === step) {
       console.log("Correct!");
-    } else  {
+    } else {
       console.log(
         `'${answerUser}' is wrong answer ;(. Correct answer was '${step}'. \n Let's try again, ${name}!`
       );
