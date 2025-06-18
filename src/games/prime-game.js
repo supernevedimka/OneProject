@@ -1,13 +1,9 @@
-import readlineSync from "readline-sync";
-import { greetUser } from "../cli.js";
+import { generateRandomNumber } from "../helpers.js";
+import engine from "../engine.js";
 
-export const runBrainPrime = () => {
-  const name = greetUser();
-  console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
-  for (let i = 0; i < 3; i++) {
-    const randomNumber = Math.floor(Math.random() * 101);
-    console.log("Question: " + randomNumber);
-    const getPrime = (randomNumber) => {
+const mainRule = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+
+const getPrime = (randomNumber) => {
       if (randomNumber < 2) {
         return "no";
       }
@@ -21,16 +17,12 @@ export const runBrainPrime = () => {
       }
       return "yes";
     };
-    const correctAnswer = getPrime(randomNumber);
-    const answerUser = readlineSync.question("Your answer: ");
-    if (answerUser.toLowerCase() === correctAnswer) {
-      console.log("Correct!");
-    } else if (answerUser !== correctAnswer) {
-      console.log(
-        `'${answerUser}' is wrong answer ;(. Correct answer was '${correctAnswer}'. \n Let's try again, ${name}!`
-      );
-      return;
-    }
-  }
-  console.log(`Congratulations, ${name}!`);
+
+const generateGameVariables = () => {
+  const randomNumber = generateRandomNumber(1, 101);
+  const mainQuestion = randomNumber;
+  const correctAnswer = String(getPrime(randomNumber));
+  return [correctAnswer, mainQuestion]
 };
+
+export default () => engine(mainRule, generateGameVariables);

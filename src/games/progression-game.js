@@ -1,30 +1,27 @@
-import readlineSync from "readline-sync";
-import { greetUser } from "../cli.js";
+import { generateRandomNumber } from "../helpers.js";
+import engine from "../engine.js";
 
-export const runBrainProgreesion = () => {
-  const name = greetUser();
-  console.log("What number is missing in the progression?");
-  for (let i = 0; i < 3; i++) {
-    const progres10 = [];
-    const randomNumber = Math.floor(Math.random() * 101) + 1;
-    const step = Math.floor(Math.random() * 11) + 1;
-    console.log(step);
-    for (let j = 0; j < 10; j++) {
-      progres10.push(randomNumber + j * step);
-    }
-    let indexToChange = Math.floor(Math.random() * 9) + 1;
-    let newChar = "..";
-    progres10.splice(indexToChange, 1, newChar);
-    console.log("Question: " + progres10.join(" "));
-    const answerUser = readlineSync.question("Your answer: ");
-    if (Number(answerUser) === step) {
-      console.log("Correct!");
-    } else {
-      console.log(
-        `'${answerUser}' is wrong answer ;(. Correct answer was '${step}'. \n Let's try again, ${name}!`
-      );
-      return;
-    }
+const mainRule = "What number is missing in the progression?";
+
+const getProg = (start, length,step) => {
+  const progression = [];
+  for (let j = 0; j < length; j++) {
+    progression.push(start + j * step);
   }
-  console.log(`Congratulations, ${name}!`);
+  return progression;
 };
+const generateGameVariables = () => {
+  const start = generateRandomNumber(1, 101);
+  const step = generateRandomNumber(1, 11);
+  const length = 10;
+  const progression = getProg(start, length, step);
+  const indexToChange = generateRandomNumber(0, length - 1);
+  const correctAnswer = String(progression[indexToChange]);
+  progression[indexToChange] = "..";
+  const mainQuestion = progression.join(" ");
+  return [correctAnswer, mainQuestion];
+};
+
+
+export default () => engine(mainRule, generateGameVariables);
+
