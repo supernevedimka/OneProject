@@ -1,8 +1,6 @@
-import { greetUser } from "./cli.js";
 import readlineSync from 'readline-sync';
 
-export default (mainRule,generateGameVariables) => {
-  const name = greetUser();
+export default (mainRule,generateGameVariables,userName) => {
   console.log(mainRule)
   const countRounds = 3;
 for (let i = 0; i < countRounds; i++) {
@@ -13,10 +11,10 @@ for (let i = 0; i < countRounds; i++) {
       console.log("Correct!");
     } else {
       console.log(
-        `'${answerUser}' is wrong answer ;(. Correct answer was '${correctAnswer}'. \n Let's try again, ${name}!`
+        `'${answerUser}' is wrong answer ;(. Correct answer was '${correctAnswer}'. \n Let's try again, ${userName}!`
       );
       return;
     }
   }
-   console.log(`Congratulations, ${name}!`);
+   console.log(`Congratulations, ${userName}!`);
 };

@@ -23,5 +23,5 @@ const generateGameVariables = () => {
 };
 
 
-export default () => engine(mainRule, generateGameVariables);
+export default (userName) => engine(mainRule, generateGameVariables,userName);
 
